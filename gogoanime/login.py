@@ -10,7 +10,7 @@ from gogoanime.constants import APP_NAME, LOGIN_URL, BASE_URL, HEADERS
 
 class GogoAnimeLogin:
 
-    def __init__(self, url, service_name=APP_NAME,):
+    def __init__(self, url=BASE_URL, service_name=APP_NAME,):
         self.service_name = service_name
         self.session = requests.Session()
         parsed_url = urlparse(url)
