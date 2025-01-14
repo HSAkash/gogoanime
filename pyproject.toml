@@ -26,7 +26,8 @@ dependencies = [
     "bs4",
     "requests",
     "click",
-    "rich"
+    "rich",
+    "keyring"
 ]
 
 [project.scripts]
