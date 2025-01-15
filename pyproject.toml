@@ -1,5 +1,6 @@
 [project]
 name = "gogoanime-anitaku"
+version = "0.0.1"
 requires-python = ">=3.7"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -17,10 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
 ]
-[tool.poetry]
-version = "0.0.1"  # Update the version here
 
-dynamic = ["version"]
 
 dependencies = [
     "tqdm",
