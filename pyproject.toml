@@ -33,6 +33,15 @@ dependencies = [
 [project.scripts]
 gogoanime = "gogoanime.__main__:main"
 
+
+[project.optional-dependencies]
+cli-enhanced = ["rich"]
+testing = ["pytest", "pytest-cov", "tox"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [tool.ruff]
 select = ["E", "F", "W"]
 exclude = [
@@ -46,15 +55,7 @@ timeout = 15
 testpaths = ["tests"]
 addopts = "--maxfail=3 --disable-warnings"
 
-[project.optional-dependencies]
-cli-enhanced = ["rich"]
-testing = ["pytest", "pytest-cov", "tox"]
-
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project.urls]
-Documentation = "https://github.com/HSAkash/gogoanime/wiki"
-Changelog = "https://github.com/HSAkash/gogoanime/releases"
-Bug Tracker = "https://github.com/HSAkash/gogoanime/issues"
+documentation = "https://github.com/HSAkash/gogoanime/wiki"
+changelog = "https://github.com/HSAkash/gogoanime/releases"
+bug_tracker = "https://github.com/HSAkash/gogoanime/issues"
