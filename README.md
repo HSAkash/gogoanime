@@ -11,7 +11,7 @@ pip install git+https://github.com/HSAkash/gogoanime.git
 ```
 or 
 ```
-pip install gogoanime
+pip install gogoanime-anitaku
 ```
 
 ## Directories
