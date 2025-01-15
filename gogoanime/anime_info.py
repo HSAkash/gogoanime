@@ -66,7 +66,7 @@ class GogoanimeInfo:
         return {
             'anime_name': self.anime_name,
             'anime_url': self.anime_url,
-            'anime_api_url': self.epi_url,
+            'anime_episode_url': self.epi_url,
             'base_url': self.base_url,
             'totalNumberOfEpisodes': self.totalNumberOfEpisodes
         }
