@@ -6,7 +6,7 @@ __version__ = "0.1.0"
 
 logging_str = "[%(asctime)s: %(levelname)s: %(module)s: %(message)s]"
 
-log_dir = "logs"
+log_dir = os.path.join(os.path.expanduser("~"),".gogoanimelogs")
 log_filepath = os.path.join(log_dir,"running_logs.log")
 os.makedirs(log_dir, exist_ok=True)
 
