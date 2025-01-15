@@ -56,6 +56,7 @@ testpaths = ["tests"]
 addopts = "--maxfail=3 --disable-warnings"
 
 [project.urls]
+Homepage = "https://github.com/HSAkash/gogoanime"
 documentation = "https://github.com/HSAkash/gogoanime/wiki"
 changelog = "https://github.com/HSAkash/gogoanime/releases"
 bug_tracker = "https://github.com/HSAkash/gogoanime/issues"
