@@ -59,13 +59,14 @@ class GogoanimeInfo:
         self.anime_url = self.url
         if 'category' not in self.url:
             self.anime_url = f"{self.base_url}/category/{self.url.split('/')[-1].split('-episode-')[0]}"
-        return self.anime_url
+        self.epi_url = f"{self.base_url}/{self.anime_url.split('category/')[-1]}-episode-"
 
     def get_anime_info(self):
         self._get_totalNumberOfEpisodes()
         return {
             'anime_name': self.anime_name,
             'anime_url': self.anime_url,
+            'anime_api_url': self.epi_url,
             'base_url': self.base_url,
             'totalNumberOfEpisodes': self.totalNumberOfEpisodes
         }
