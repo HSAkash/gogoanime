@@ -17,6 +17,8 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
 ]
+[tool.poetry]
+version = "0.0.1"  # Update the version here
 
 dynamic = ["version"]
 
