@@ -1,3 +1,5 @@
+import os
+import sys
 import subprocess
 from gogoanime import logger
 
@@ -11,6 +13,11 @@ def download(url, destination_file_path, workers=16, quiet=False):
         workers: The number of workers to use for the download.
         quiet: Whether to run aria2c in quiet mode. Nothing will be printed to the console if True.
     """
+
+    if os.path.exists(destination_file_path) and not os.path.exists(f"{destination_file_path}.aria2"):
+            if not quiet:
+                logger.info(f"File already downloaded: {destination_file_path}")
+            return
 
     command = [
         "aria2c",
@@ -37,6 +44,8 @@ def download(url, destination_file_path, workers=16, quiet=False):
         process.terminate()  # Allow the user to stop the process with Ctrl+C
         # print("Download interrupted!")
         logger.error("Download interrupted!")
+        process.wait()
+        sys.exit(1)
     finally:
         process.wait()  # Ensure the process has finished
 
