@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
+from gogoanime import logger
+import sys
+
 
 class GogoanimeInfo:
     def __init__(self, url, session):
@@ -11,12 +14,12 @@ class GogoanimeInfo:
         """
         self.url = url
         self.session = session
-        self.soup = self._get_soup()
-        self._get_anime_name()
-        self._get_anime_url()
-        self._get_totalNumberOfEpisodes()
         parsed_url = urlparse(url)
         self.base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+        self._get_anime_url()
+        self.soup = self._get_soup()
+        self._get_anime_name()
+        self._get_totalNumberOfEpisodes()
 
 
     def _get_soup(self):
@@ -24,14 +27,21 @@ class GogoanimeInfo:
         Get the BeautifulSoup object of the anime page.
         """
         response = self.session.get(self.url)
-        response.raise_for_status()
+        if response.status_code == 404:
+            response = self.session.get(self.anime_url)
+            if response.status_code == 404:
+                message = f"Anime not found: {self.url}"
+                logger.error(message)
+                sys.exit(1)
+            logger.info("Anime episode number is not correct")
         return BeautifulSoup(response.text, 'html.parser')
     
 
     def _get_anime_name(self):
-        if 'category' not in self.url:
+        self.anime_name = 'Not found'
+        try:
             self.anime_name = self.soup.find_all('div', {'class':'anime-info'})[0].find_all('a')[0].text.strip()
-        else:
+        except Exception:
             self.anime_name = self.soup.find_all('div', {'class':'anime_info_body_bg'})[0].find_all('h1')[0].text.strip()
 
     def _get_totalNumberOfEpisodes(self):
@@ -46,10 +56,10 @@ class GogoanimeInfo:
 
 
     def _get_anime_url(self):
-        if 'category' in self.url:
-            self.anime_url = f"{self.url.split('category/')[-1]}-episode-" 
-        else:
-            self.anime_url = f"{self.url.split('/')[-1].split('-episode-')[0]}-episode-"
+        self.anime_url = self.url
+        if 'category' not in self.url:
+            self.anime_url = f"{self.base_url}/category/{self.url.split('/')[-1].split('-episode-')[0]}"
+        return self.anime_url
 
     def get_anime_info(self):
         self._get_totalNumberOfEpisodes()
