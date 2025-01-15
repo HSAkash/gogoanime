@@ -22,7 +22,7 @@ from gogoanime.get_download_url import GogoanimeUrls
 @click.option('--end-n', '-e', type=int, help='end episode number.')
 @click.option('--yes-playlist', is_flag=True, help='For playlist download.')
 @click.option('--login', is_flag=True, help='For Login user.')
-@click.option('--verbose', is_flag=True, help='For Login user.')
+@click.option('--verbose', is_flag=True, help='Quiet.')
 
 
 
@@ -50,6 +50,7 @@ def main(
         end_n: End episode number.
         yes_playlist: Flag for playlist download.
         login: Flag for user login.
+        verbose: Quiet mode.
     """
     try:
         if url.startswith('https://'):
